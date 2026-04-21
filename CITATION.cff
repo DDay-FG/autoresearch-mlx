@@ -1,11 +1,10 @@
 cff-version: 1.2.0
 title: autoresearch-mlx
-message: "If you use this software, please cite it."
+message: "If you use this fork, please cite it. For the autoresearch concept itself, cite Karpathy's upstream project."
 type: software
 authors:
-  - family-names: Day
-    given-names: Darrell
-    alias: DDay-FG
+  - family-names: DDay-FG
+    website: "https://github.com/DDay-FG"
 repository-code: "https://github.com/DDay-FG/autoresearch-mlx"
 license: MIT
 keywords:
@@ -14,3 +13,5 @@ keywords:
   - mlx
   - autonomous-research
   - transformer
+  - autoresearch
+  - fork

@@ -1,15 +1,36 @@
 [project]
 name = "autoresearch-mlx"
-version = "0.1.0"
-description = "Apple Silicon MLX port of Karpathy's autoresearch"
+version = "0.2.0"
+description = "Apple Silicon MLX autoresearch harness — DDay-FG fork of trevin-creator/autoresearch-mlx"
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
+license = { text = "MIT" }
 dependencies = [
     "mlx>=0.30.0",
     "numpy>=2.2.6",
+    "polars>=0.20.0",
     "pyarrow>=21.0.0",
     "regex>=2025.7.34",
     "requests>=2.32.0",
     "rustbpe>=0.1.0",
     "tiktoken>=0.11.0",
+    "tokenizers>=0.20.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
