@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: autoresearch-mlx
+message: "If you use this software, please cite it."
+type: software
+authors:
+  - family-names: Day
+    given-names: Darrell
+    alias: DDay-FG
+repository-code: "https://github.com/DDay-FG/autoresearch-mlx"
+license: MIT
+keywords:
+  - machine-learning
+  - apple-silicon
+  - mlx
+  - autonomous-research
+  - transformer
