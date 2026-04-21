@@ -4,3 +4,9 @@ c67ad2a	2.695369	26.9	discard	lower weight decay to 0.1
 909dd59	2.588904	26.9	keep	halve total batch size to 2^16
 4161af3	2.533728	26.9	keep	increase matrix LR to 0.04
 5efc7aa	1.807902	20.7	keep	reduce depth from 8 to 4
+53f4bcc	1.804532	20.7	keep	apr20 baseline (this hardware)
+23175aa	1.595840	20.7	keep	halve batch size to 2^15
+9865203	1.483322	20.7	keep	halve batch to 2^14
+ead89a4	1.438082	20.7	keep	batch 2^13
+65669ab	1.490421	20.7	discard	batch 2^12 (gradient noise dominates)
+38acd33	1.416715	20.7	keep	SiLU activation (batch 2^13)

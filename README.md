@@ -4,6 +4,20 @@ Apple Silicon (MLX) port of [Karpathy's autoresearch](https://github.com/karpath
 
 Full credit to [@karpathy](https://github.com/karpathy) for the core idea: fixed-time autonomous research loops controlled through `program.md`. This port keeps the same basic rules: one mutable `train.py`, one metric (`val_bpb`), a fixed 5-minute training budget, and keep-or-revert via git. It runs natively on Apple Silicon through [MLX](https://github.com/ml-explore/mlx), so there is no PyTorch or CUDA dependency.
 
+## What this is
+
+A minimal harness for running Karpathy-style autonomous experiment loops on Apple Silicon. One mutable file, one metric, a fixed time budget, and a clean keep-or-revert history. Point a coding agent at `program.md` and it runs itself.
+
+**It saves time if** you want to iterate on transformer training ideas on Apple Silicon without touching CUDA or PyTorch, and you care about wall-clock iteration speed over MFU.
+
+## What this isn't
+
+- Not a production training framework — it's an experiment scaffold
+- Not a fine-tuning toolkit — every run trains cold from scratch
+- Not MFU-optimized — reporting is a placeholder; compare runs by `val_bpb`
+- Not a full nanochat port — only the training-loop slice is lifted, not tokenizers-at-scale, RLHF, or serving
+- Not benchmarked against CUDA rigs — the point is iteration speed on a Mac you already own
+
 ## Quick start
 
 Requirements: Apple Silicon Mac, Python 3.10+, [uv](https://docs.astral.sh/uv/).
@@ -58,6 +72,18 @@ Longer overnight runs on the working MLX port pushed much further. The long Mac 
 
 The Mac Mini result matters because it did not just rediscover the same exact recipe. On smaller Apple Silicon hardware, the strongest changes leaned toward more aggressive step-efficiency wins. Later transfer tests showed some of those Mac Mini findings did not carry cleanly onto the Max baseline, which is exactly the kind of hardware-specific behavior this loop is useful for uncovering.
 
+## Recent runs (Apr 2026)
+
+Continued exploration on this fork. Baseline retraced on current hardware (`1.804532`), then pushed down through batch-size tuning and an activation change.
+
+| Step | val_bpb | Note |
+|---|---:|---|
+| Baseline | 1.804532 | apr20, this hardware |
+| Batch floor search | 1.438082 | 2^13 wins; 2^12 regresses on gradient noise |
+| SiLU activation | 1.416715 | apr20 best (-21.5% vs apr20 baseline) |
+
+The headline finding for this model size on Apple Silicon: with a fixed 5-minute budget, step count dominates. Halving the batch compounds into meaningful wins until gradient noise takes over around 2^13 (~8K tokens). Working branch is not pushed to this repo.
+
 ## Differences from upstream
 
 - **MLX instead of PyTorch/CUDA.** Native Apple Silicon training with unified memory.
@@ -72,6 +98,8 @@ The Mac Mini result matters because it did not just rediscover the same exact re
 - [scasella/nanochat-mlx](https://github.com/scasella/nanochat-mlx) - MLX GPT and optimizer reference
 - [awni/picochat](https://github.com/awni/picochat) - MLX training patterns
 - [Apple MLX team](https://github.com/ml-explore/mlx)
+
+Thanks also to [@lati-cooki](https://github.com/lati-cooki) for ongoing support and encouragement.
 
 ## License
 
