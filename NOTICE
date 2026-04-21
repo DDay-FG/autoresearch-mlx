@@ -1,0 +1,54 @@
+autoresearch-mlx — Attribution and Lineage
+==========================================
+
+This repository is a maintained fork of:
+
+    Trevin Peterson's autoresearch-mlx
+    https://github.com/trevin-creator/autoresearch-mlx
+
+Trevin authored the original Apple Silicon port, including the
+initial versions of train.py, prepare.py, program.md, pyproject.toml,
+and the public README. His commits remain in the git history of this
+repository under his authorship.
+
+Conceptual lineage
+------------------
+
+    Andrej Karpathy — the original autoresearch protocol; the
+        "one mutable file / fixed time budget / keep-or-revert"
+        loop design. https://github.com/karpathy/autoresearch
+
+    Scott Casella — scasella/nanochat-mlx, an MLX reference for
+        the GPT model and optimizer patterns.
+
+    Awni Hannun — awni/picochat, MLX training patterns.
+
+    Apple MLX team — the MLX array framework itself.
+        https://github.com/ml-explore/mlx
+
+Downstream contributions
+------------------------
+
+Contributions made in this fork (this repository) are authored by
+@DDay-FG unless the git history indicates otherwise. Notable
+downstream additions include:
+
+  - NOTICE (this file)
+  - ARCHITECTURE.md
+  - config.py (AST-based read of train.py constants)
+  - bench.py (Polars-based analysis of results.tsv)
+  - rust/bench-rs/ (Rust CLI sibling of bench.py)
+  - tests/ (smoke tests)
+  - docs/adr/ (architecture decision records)
+  - Makefile (common task wrappers)
+  - CITATION.cff
+  - Dependency additions: polars, tokenizers
+  - Dev dependencies: pytest, ruff
+  - Expanded results.tsv with apr20 runs on current hardware
+
+Licensing
+---------
+
+This project is distributed under the MIT License. See LICENSE.
+All prior contributors retain copyright over their own contributions
+as reflected in the git commit history of this repository.
