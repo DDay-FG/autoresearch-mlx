@@ -3,11 +3,12 @@
 # This Makefile is for human convenience; the autonomous loop itself
 # still runs `uv run train.py` directly per program.md.
 
-.PHONY: help install test lint bench bench-rs clean
+.PHONY: help install smoke test lint bench bench-rs clean
 
 help:
 	@echo "Targets:"
 	@echo "  make install   - install Python deps via uv"
+	@echo "  make smoke     - fast repo verification (no data download, no training)"
 	@echo "  make test      - run smoke tests"
 	@echo "  make lint      - run ruff"
 	@echo "  make bench     - render markdown summary of results.tsv (Python)"
@@ -16,6 +17,9 @@ help:
 
 install:
 	uv sync
+
+smoke:
+	bash scripts/smoke.sh
 
 test:
 	uv run pytest tests/ -q

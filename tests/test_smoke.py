@@ -58,10 +58,10 @@ def test_results_tsv_numeric_columns():
 
 
 def test_results_tsv_status_values():
-    """status column only contains 'keep' or 'discard'."""
+    """status column only contains values allowed by program.md's schema."""
     df = pl.read_csv(REPO / "results.tsv", separator="\t")
     statuses = set(df["status"].to_list())
-    assert statuses <= {"keep", "discard"}, f"unexpected status values: {statuses}"
+    assert statuses <= {"keep", "discard", "crash"}, f"unexpected status values: {statuses}"
 
 
 def test_bench_load_succeeds():

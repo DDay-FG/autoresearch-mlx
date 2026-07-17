@@ -41,6 +41,7 @@ downstream additions include:
   - tests/ (smoke tests)
   - docs/adr/ (architecture decision records)
   - Makefile (common task wrappers)
+  - scripts/smoke.sh (no-training environment smoke test)
   - CITATION.cff
   - Dependency additions: polars, tokenizers
   - Dev dependencies: pytest, ruff
